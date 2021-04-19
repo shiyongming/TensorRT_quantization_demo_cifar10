@@ -44,5 +44,5 @@ to calculate and analysis the distribtion of the calibration dataset.
 --------------- 30 calibration images ---------------------------- 40 calibration images ---------------<br/>
 
 It can be seen that, from 10 images to 40 calibration images, the distribution covers more and more area.
-As the a result, the accruacy was also increased. And It also can be seen that, some of area still not be covered.
-So, it guides us that, if we want to improve the quantization preformance, we need to add some images to cover the uncovered area.
+As a result, the accruacy was increased. And it also can be seen that, some area still not be covered.
+So, it guides us that, if we want to improve the quantization preformance, we need to add more images to cover the uncovered area.
