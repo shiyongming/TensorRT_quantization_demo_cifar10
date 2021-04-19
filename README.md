@@ -26,7 +26,7 @@ The ResNet18 onnx model comes from the repo of [pytorch-onnx-tensorrt-CIFAR10](h
 ### Results
 Before quanztization, the orignal top-1 accruacy on test_batch is 87.81%. After quantization, the top-1 accuracy is shown as below.
 
-![img.png](img.png)
+![img_1.png](img_1.png)
 
 '10+10' images means that we add another 10 images into the existed '10' images. And '10+10+10' means we add another 10 images into the existed '10+10' images. 
 
