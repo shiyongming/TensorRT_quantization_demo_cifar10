@@ -33,11 +33,12 @@ To evaluate the quality of calibration set. I adopt my another repo [calib-datas
 to calculate and analysis the distribtion of the calibration dataset.
 
 
----------------10 calibration images-------------------------20 calibration images-------------
-<img src="cifar10_data/calib_dataset_10.png" height="250" alt="calib number = 10"/> <img src="cifar10_data/calib_dataset_20.png" height="250" alt="calib number = 20"/><br/>
----------------30 calibration images-------------------------40 calibration images-------------
-<img src="cifar10_data/calib_dataset_30.png" height="250" alt="calib number = 30"/> <img src="cifar10_data/calib_dataset_40.png" height="250" alt="calib number = 40"/>
 
+<img src="cifar10_data/calib_dataset_10.png" height="250" alt="calib number = 10"/> <img src="cifar10_data/calib_dataset_20.png" height="250" alt="calib number = 20"/><br/>
+---------------10 calibration images----------------------------20 calibration images-------------<br/>
+
+<img src="cifar10_data/calib_dataset_30.png" height="250" alt="calib number = 30"/> <img src="cifar10_data/calib_dataset_40.png" height="250" alt="calib number = 40"/><br/>
+---------------30 calibration images----------------------------40 calibration images-------------<br/>
 
 It can be seen that, from 10 images to 40 calibration images, the distribution covers more and more area.
 As the a result, the accruacy was also increased. And It also can be seen that, some of area still not be covered.
