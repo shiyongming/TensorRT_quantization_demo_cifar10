@@ -32,6 +32,6 @@ Before quanztization, the orignal top-1 accruacy on test_batch is 87.81%. After 
 To evaluate the quality of calibration set. I adopt my another repo [calib-dataset-eval](https://github.com/shiyongming/TensorRT_quantization_demo_cifar10) 
 to calculate and analysis the distribtion of the calibration dataset.
 
-<img src="cifar10_data/calib_dataset_10.png" width="200" alt="微信小程序"/>
+<img src="cifar10_data/calib_dataset_10.png" height="300" alt="微信小程序"/>
 
 It can be seen that, 
