@@ -1,6 +1,6 @@
 # TensorRT_quantization_demo_cifar10
 This demo is to show how to build a TensorRT INT8 engine for cifar10 classification task. 
-It also demonstrates how the size of calibrate dataset influences the final accuracy after quantization.
+It also demonstrates that how the calibration dataset size influences the final accuracy after quantization.
 
 
 The basic code is derived from one of TensorRT python samples: [int8_caffe_mnist](https://github.com/NVIDIA/TensorRT/tree/master/samples/python/int8_caffe_mnist).
