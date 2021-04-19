@@ -1,10 +1,13 @@
 # TensorRT_quantization_demo_cifar10
-This demo is to show how to build a Resnet18 TensorRT int8 engine. And demonstrate how the size of calibrate dataset influences the final accuracy.
+This demo is to show how to build a TensorRT INT8 engine for cifar10 classification task. 
+It also demonstrates how the size of calibrate dataset influences the final accuracy after quantization.
 
-This demo is derived from a TensorRT python sample: int8_caffe_mnist.
 
-To demonstrate how the calibrate dataset size influences the accuracy after int8 quantization, 
+The basic code is derived from one of TensorRT python samples: [int8_caffe_mnist](https://github.com/NVIDIA/TensorRT/tree/master/samples/python/int8_caffe_mnist).
+To demonstrate how the calibration dataset size influences the accuracy after int8 quantization, 
 the mnist dataset was changed into cifar10 dataset, and the LeNet was changed into ResNet18.
+The ResNet18 onnx model comes from the repo of [pytorch-onnx-tensorrt-CIFAR10](https://github.com/shiyongming/pytorch-onnx-tensorrt-CIFAR10).
+
 
 ### Run it step by step
 0. ```pip install -r requirements.txt``` 
