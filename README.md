@@ -20,7 +20,7 @@ the mnist dataset was changed into cifar10 dataset, and the LeNet was changed in
 6. ```python sample.py```
 
 
-###Results
+### Results
 Before quanztization, the orignal top-1 accruacy on test_batch is 87.81%. After quantization, the top-1 accuracy is shown as below.
 
 ![img.png](img.png)
