@@ -79,14 +79,15 @@ def plot_humoments(train_images, train_labels, calib_file_path=None, plot_idx=No
             cls = train_plot_list[0][i][0]
             train_x = np.log(np.abs(train_plot_list[1][i]))  # hu_moments_1
             train_y = np.log(np.abs(train_plot_list[2][i]))  # hu_moments_1
-            plt.scatter(train_x, train_y, s=area, c=colors[(cls)], alpha=0.1, label=cls)
+            plt.scatter(train_x, train_y, s=area, c=colors[(cls)], alpha=0.05, label=cls)
 
     else:
         cls = train_plot_list[0][plot_idx][0]
         train_x = np.log(np.abs(train_plot_list[1][plot_idx])) # hu_moments_1
         train_y = np.log(np.abs(train_plot_list[2][plot_idx])) # hu_moments_2
-        plt.scatter(train_x, train_y, s=area, c=colors[cls], alpha=0.1, label='cls_num:' + str(cls))
+        plt.scatter(train_x, train_y, s=area, c=colors[cls], alpha=0.05, label='cls_num:' + str(cls))
 
+    area = np.pi * 3 ** 2
     calib_x = np.log(np.abs(calib_plot_list[0]))  # hu_moments_1
     calib_y = np.log(np.abs(calib_plot_list[1]))  # hu_moments_2
     plt.scatter(calib_x, calib_y, s=area, marker='x', c='red', alpha=0.5)
@@ -125,7 +126,7 @@ if __name__ == '__main__':
 
     images = np.vstack((images_1, images_2, images_3, images_4, images_5))
     labels = np.vstack((labels_1, labels_2, labels_3, labels_4, labels_5))
-    calib_file_path = 'calib_dataset_40/'
-    output_file = 'calib_dataset_40' + '.png'
+    calib_file_path = 'calib_dataset_10/'
+    output_file = 'calib_dataset_10' + '.png'
     plot_humoments(images.reshape(50000,32,32,3), labels.reshape(50000,1), plot_idx=None, \
                    calib_file_path=calib_file_path, output_file=output_file)
