@@ -21,3 +21,17 @@ the mnist dataset was changed into cifar10 dataset, and the LeNet was changed in
 
 
 ###Results
+Before quanztization, the orignal top-1 accruacy on test_batch is 87.81%. After quantization, the top-1 accuracy is shown as below.
+
+![img.png](img.png)
+
+'10+10' images means that we add another 10 images into the existed '10' images. And '10+10+10' means we add another 10 images into the existed '10+10' images. 
+
+'20' and '30' images means the calibration image set was selected randomly.
+
+To evaluate the quality of calibration set. I adopt my another repo [calib-dataset-eval](https://github.com/shiyongming/TensorRT_quantization_demo_cifar10) 
+to calculate and analysis the distribtion of the calibration dataset.
+
+<img src="cifar10_data/calib_dataset_10.png" width="200" alt="微信小程序"/>
+
+It can be seen that, 

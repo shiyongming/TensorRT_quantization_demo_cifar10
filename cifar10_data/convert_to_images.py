@@ -9,8 +9,8 @@ def unpickle(file):
     fo.close()
     return dict
 
-#
 datafile = unpickle("test_batch")
+
 for i in range(0, 10000):
     img = np.reshape(datafile['data'][i], (3, 32, 32))
     img = img.transpose(1, 2, 0)
