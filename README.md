@@ -32,10 +32,8 @@ Before quanztization, the orignal top-1 accruacy on test_batch is 87.81%. After 
 To evaluate the quality of calibration set. I adopt my another repo [calib-dataset-eval](https://github.com/shiyongming/TensorRT_quantization_demo_cifar10) 
 to calculate and analysis the distribtion of the calibration dataset.
 
-<img src="cifar10_data/calib_dataset_10.png" height="250" alt="calib number = 10"/>
-<img src="cifar10_data/calib_dataset_20.png" height="250" alt="calib number = 20"/><br/>
-<img src="cifar10_data/calib_dataset_30.png" height="250" alt="calib number = 30"/>
-<img src="cifar10_data/calib_dataset_40.png" height="250" alt="calib number = 40"/>
+<img src="cifar10_data/calib_dataset_10.png" height="250" alt="calib number = 10"/> <img src="cifar10_data/calib_dataset_20.png" height="250" alt="calib number = 20"/><br/>
+<img src="cifar10_data/calib_dataset_30.png" height="250" alt="calib number = 30"/> <img src="cifar10_data/calib_dataset_40.png" height="250" alt="calib number = 40"/>
 
 
 It can be seen that, from 10 images to 40 images, the distribution covers more and more area.
