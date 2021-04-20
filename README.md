@@ -32,7 +32,7 @@ Before quanztization, the orignal top-1 accruacy on test_batch is 87.81%. After 
 
 '20' and '30' images means the calibration image set was selected randomly.
 
-To evaluate the quality of calibration set. I adopt my another repo [calib-dataset-eval](https://github.com/shiyongming/TensorRT_quantization_demo_cifar10) 
+To evaluate the quality of calibration set. I adopt my another repo [calib-dataset-eval](https://github.com/shiyongming/calib-dataset-eval) 
 to calculate and analysis the distribtion of the calibration dataset.
 
 
