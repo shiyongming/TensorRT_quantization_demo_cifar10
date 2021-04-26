@@ -52,10 +52,9 @@ class MNISTEntropyCalibrator(trt.IInt8EntropyCalibrator2):
         trt.IInt8EntropyCalibrator2.__init__(self)
         # trt.IInt8MinMaxCalibrator.__init__(self)
 
-        self.cache_file = cache_file
-
-        # Every time get_batch is called, the next batch of size batch_size will be copied to the device and returned.
+        # Prepare data for the the following
         self.data = load_mnist_jpeg_images(training_data, total_images)
+        self.cache_file = cache_file
         self.batch_size = batch_size
         self.current_index = 0
 
@@ -72,10 +71,12 @@ class MNISTEntropyCalibrator(trt.IInt8EntropyCalibrator2):
         if self.current_index + self.batch_size > self.data.shape[0]:
             return None
 
+        # Print log for every 10 batches
         current_batch = int(self.current_index / self.batch_size)
         if current_batch % 10 == 0:
             print("Calibrating batch {:}, containing {:} images".format(current_batch, self.batch_size))
 
+        # Every time get_batch is called, the next batch of size batch_size will be copied to the device and returned.
         batch = self.data[self.current_index:self.current_index + self.batch_size].ravel()
         cuda.memcpy_htod(self.device_input, batch)
         self.current_index += self.batch_size

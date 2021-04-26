@@ -35,9 +35,8 @@ TRT_LOGGER = trt.Logger()
 def build_int8_engine(onnx_file_path, calib, batch_size=32):
     # with trt.Builder(TRT_LOGGER) as builder, builder.create_network() as network, builder.create_builder_config() as config, trt.CaffeParser() as parser:
     EXPLICIT_BATCH = 1 << (int)(trt.NetworkDefinitionCreationFlag.EXPLICIT_BATCH)
-    with trt.Builder(TRT_LOGGER) as builder, builder.create_network(
-            common.EXPLICIT_BATCH) as network, builder.create_builder_config() as config, trt.OnnxParser(network,
-                                                                                                         TRT_LOGGER) as parser:
+    with trt.Builder(TRT_LOGGER) as builder, builder.create_network(common.EXPLICIT_BATCH) as network, \
+            builder.create_builder_config() as config, trt.OnnxParser(network,TRT_LOGGER) as parser:
         # We set the builder batch size to be the same as the calibrator's, as we use the same batches
         # during inference. Note that this is not required in general, and inference batch size is
         # independent of calibration batch size.
@@ -58,10 +57,10 @@ def build_int8_engine(onnx_file_path, calib, batch_size=32):
                 return None
         network.get_input(0).shape = [batch_size, 3, 32, 32]
 
+        # Decide which layers fallback to FP32.
+        # If all layers fallback to FP32, you can use 'index>-1'
         for index, layer in enumerate(network):
             print('layer index', index, ':', layer.type)
-            # Decide which layers fallback to FP32
-            # If all layers fallback to FP32, you can use 'index>-1'
             if index < 10:
                 if layer.type == trt.LayerType.ACTIVATION or \
                         layer.type == trt.LayerType.CONVOLUTION or \
