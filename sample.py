@@ -17,7 +17,6 @@
 import tensorrt as trt
 
 import numpy as np
-import random
 import pickle
 
 # For our custom calibrator
@@ -29,10 +28,8 @@ import sys, os
 sys.path.insert(1, os.path.join(sys.path[0], os.path.pardir))
 import common
 
-TRT_LOGGER = trt.Logger(trt.Logger.VERBOSE)
-
-
-# TRT_LOGGER = trt.Logger()
+#TRT_LOGGER = trt.Logger(trt.Logger.VERBOSE)
+TRT_LOGGER = trt.Logger()
 
 # This function builds an engine from a Caffe model.
 def build_int8_engine(onnx_file_path, calib, batch_size=32):
