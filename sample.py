@@ -29,8 +29,10 @@ import sys, os
 sys.path.insert(1, os.path.join(sys.path[0], os.path.pardir))
 import common
 
-TRT_LOGGER = trt.Logger()
+TRT_LOGGER = trt.Logger(trt.Logger.VERBOSE)
 
+
+# TRT_LOGGER = trt.Logger()
 
 # This function builds an engine from a Caffe model.
 def build_int8_engine(onnx_file_path, calib, batch_size=32):
@@ -43,9 +45,10 @@ def build_int8_engine(onnx_file_path, calib, batch_size=32):
         # during inference. Note that this is not required in general, and inference batch size is
         # independent of calibration batch size.
         builder.max_batch_size = batch_size
-        config.max_workspace_size = common.GiB(1)
 
+        config.max_workspace_size = common.GiB(1)
         config.set_flag(trt.BuilderFlag.INT8)
+        config.set_flag(trt.BuilderFlag.STRICT_TYPES)
         config.int8_calibrator = calib
 
         # Parse Onnx model
@@ -57,6 +60,20 @@ def build_int8_engine(onnx_file_path, calib, batch_size=32):
                     print(parser.get_error(error))
                 return None
         network.get_input(0).shape = [batch_size, 3, 32, 32]
+
+        for index, layer in enumerate(network):
+            print('layer index', index, ':', layer.type)
+            # Decide which layers fallback to FP32
+            # If all layers fallback to FP32, you can use 'index>-1'
+            if index < 10:
+                if layer.type == trt.LayerType.ACTIVATION or \
+                        layer.type == trt.LayerType.CONVOLUTION or \
+                        layer.type == trt.LayerType.FULLY_CONNECTED or \
+                        layer.type == trt.LayerType.SCALE:
+                    print('fallback to fp32!')
+                    layer.precision = trt.float32
+                    layer.set_output_type(0, trt.float32)
+
         # Build engine and do int8 calibration.
         return builder.build_engine(network, config)
 
@@ -122,13 +139,13 @@ def load_cifar_data(cifar10_path):
 def main():
     ONNX_PATH = "resnet18.onnx"
     cifar10_data_path = '/workspace/hostdir/cifar10_dataset/'
-    calib_data_path = '/workspace/hostdir/cifar10_dataset/calib_dataset_10/'
+    calib_data_path = '/workspace/hostdir/cifar10_dataset/calib_dataset_40/'
     # calib_data_path = '/workspace/hostdir/cifar10_dataset/test/'
 
     # Now we create a calibrator and give it the location of our calibration data.
     # We also allow it to cache calibration data for faster engine building.
     calibration_cache = "mnist_calibration.cache"
-    calib = MNISTEntropyCalibrator(calib_data_path, total_images=10, batch_size=10, cache_file=calibration_cache)
+    calib = MNISTEntropyCalibrator(calib_data_path, total_images=40, batch_size=10, cache_file=calibration_cache)
 
     # Inference batch size can be different from calibration batch size.
     batch_size = 32
@@ -136,6 +153,7 @@ def main():
         # Batch size for inference can be different than batch size used for calibration.
         test_set, test_labels = load_cifar_data(cifar10_data_path)
         check_accuracy(context, batch_size, test_set=test_set, test_labels=test_labels)
+
 
 if __name__ == '__main__':
     main()
