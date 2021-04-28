@@ -22,9 +22,9 @@ The ResNet18 onnx model comes from the repo of [pytorch-onnx-tensorrt-CIFAR10](h
 0.4 ```pip install -r requirements.txt``` 
 
 
-1. You need to change the `ONNX_PATH` (line 136 in sample.py) into your own path where you save the `resnet18.onnx`.
-2. You need to change the `cifar10_data_path` (line 137 in sample.py) into your own path where you save the cifar10 test data`test_batch`.
-3. You need to change the `calib_data_path` (line 138 in sample.py) into your own path where you save data for cailbration.
+1. You need to change the `ONNX_PATH` (line 136 in sample.py) into your own path of `resnet18.onnx`.
+2. You need to change the `cifar10_data_path` (line 137 in sample.py) into your own path of cifar10 test data`test_batch`.
+3. You need to change the `calib_data_path` (line 138 in sample.py) into your own path of data for cailbration.
 4. `total_images` and `batch_size` (line 144 in sample.py) are the total images number you used for calibration and batch size for loading the calibration data. 
    They should also be changed.
     
