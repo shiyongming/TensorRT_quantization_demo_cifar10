@@ -10,17 +10,26 @@ The ResNet18 onnx model comes from the repo of [pytorch-onnx-tensorrt-CIFAR10](h
 
 
 ### Run it step by step
-0. ```pip install -r requirements.txt``` 
-1. You need to change the `ONNX_PATH` (line 123 in sample.py) into your own path where you save the `resnet18.onnx`.
-2. You need to change the `cifar10_data_path` (line 124 in sample.py) into your own path where you save the cifar10 test data`test_batch`.
-3. You need to change the `calib_data_path` (line 125 in sample.py) into your own path where you save data for cailbration.
-4. `total_images` and `batch_size` (line 131 in sample.py) are the total images number you used for calibration and batch size for loading the calibration data. 
+0.1 start a NGC TensorRT container: `nvcr.io/nvidia/tensorrt:21.03-py3`
+0.2 `git clone https://github.com/shiyongming/TensorRT_quantization_demo_cifar10.git`
+0.3 `cd TensorRT_quantization_demo_cifar10`
+0.4 ```pip install -r requirements.txt``` 
+1. You need to change the `ONNX_PATH` (line 136 in sample.py) into your own path where you save the `resnet18.onnx`.
+2. You need to change the `cifar10_data_path` (line 137 in sample.py) into your own path where you save the cifar10 test data`test_batch`.
+3. You need to change the `calib_data_path` (line 138 in sample.py) into your own path where you save data for cailbration.
+4. `total_images` and `batch_size` (line 144 in sample.py) are the total images number you used for calibration and batch size for loading the calibration data. 
    They should also be changed.
     
 5. If you want to use the whole test dataset to do the calibration. You can use `convert_to_images.py` to convert the cifar10 `test_batch` file into jpeg images. 
    Note that to change the path into your own path.
 
 6. ```python sample.py```
+
+
+7. Select different calibration folder in `cifar10_dataset` to see the inference caused by calibration dataset size and calibration batch size.
+
+
+8. change the condition in line 64~68 of sample.py to fallback some layers into higher precision.
 
 
 ### Results
